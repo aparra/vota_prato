@@ -1,6 +1,6 @@
 class RestaurantesController < ApplicationController
   def index
-    @restaurantes = Restaurante.oder("nome")
+    @restaurantes = Restaurante.order("nome")
   end
   
   def show 
@@ -12,21 +12,20 @@ class RestaurantesController < ApplicationController
   end
   
   def create
-    @resturante = Restaurante.new
-    if @restaurante.save?
-      redirect_to(:action, "show", :id => restaurante)
-    end 
+    @restaurante = Restaurante.new(params[:restaurante])
+    if @restaurante.save
+      redirect_to(:action => "show", :id => @restaurante)
+    else 
       render :action => "new"
     end
   end
   
   def edit
-    @restaurantes = Restaurante.find(params[:id])
+    @restaurante = Restaurante.find(params[:id])
   end
   
   def update
     @restaurante = Restaurante.find(params[:id])
-    
     if @restaurante.update_attributes(params[:restaurante])
       redirect_to(:action => "show", :id => @restaurante)
     else
@@ -35,7 +34,7 @@ class RestaurantesController < ApplicationController
   end
   
   def destroy
-    @restaurante => Restaurante.find(params.[:id])
+    @restaurante = Restaurante.find(params[:id])
     @restaurante.destroy
     redirect_to(:action => "index")
   end
