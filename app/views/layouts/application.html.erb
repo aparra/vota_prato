@@ -2,13 +2,15 @@
 <html>
 <head>
   <title>Programa de Qualificação de Restaurantes</title>
-	<%= stylesheet_link_tag ‘scaffold’ %>
+	<%= stylesheet_link_tag 	 "scaffold" %>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 	<p style="color: grenn"><%= flash[:notice] %></p>	
+	
+	<%= menu_principal %>
 	
 	<%= yield %>
 
